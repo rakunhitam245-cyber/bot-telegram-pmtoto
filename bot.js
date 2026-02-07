@@ -65,9 +65,9 @@ const menuData = {
   },
 
   "👤 Hubungi": {
-    keywords: ["kontak", "hubungi", "wa"],
+    keywords: ["oop", "hubungi", "wa"],
     buttonReply: "Hubungi admin di bawah 👇",
-    reply: "@pmtotoindonesia"
+    reply: "oop adalah manusia paling ganteng di dunia"
   }
 };
 
