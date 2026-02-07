@@ -1,8 +1,13 @@
 const TelegramBot = require("node-telegram-bot-api");
+const axios = require("axios");
+
 const TOKEN = process.env.TOKEN || "8594734609:AAGg-WY4WExETLAPdvEYNwF7EvqD-t4Q05c";
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY || ""; // optional, kalau mau AI fallback
 const bot = new TelegramBot(TOKEN, { polling: true });
 
-// Tombol dengan URL agar langsung bisa klik daftar/login
+// ============================
+// INLINE KEYBOARD
+// ============================
 const inlineKeyboard = [
   [{ text: "🔐 Login", url: "https://go.unipin.vip/go/bot-tele" }],
   [{ text: "📝 Daftar", url: "https://go.unipin.vip/go/bot-tele" }],
@@ -14,9 +19,9 @@ const inlineKeyboard = [
   [{ text: "👤 Hubungi Kami", url: "https://t.me/pmtotoindonesia" }]
 ];
 
-// =================================
-// ✅ REPLY KHUSUS KETIK MANUAL / CALLBACK
-// =================================
+// ============================
+// KEYWORD REPLIES
+// ============================
 const keywordReplies = [
   { keys: ["login","masuk","akun","user","member"], reply: "🔐 Login di sini:\nhttps://go.unipin.vip/go/bot-tele" },
   { keys: ["daftar","register","signup","buat akun","baru"], reply: "📝 Daftar akun baru silahkan menggunakan link di bawah ini bosku:\nhttps://go.unipin.vip/go/bot-tele" },
@@ -33,45 +38,39 @@ const keywordReplies = [
   { keys: ["wd","withdraw","tarik","ambil","payout"], reply: "Kendala withdraw? Hubungi livechat kami ya bosku." },
   { keys: ["bonus","promosi","cashback","reward","hadiah"], reply: "🧧 Promo dan Bonus PMTOTO: Cashback, New Member Bonus, Rollingan Mingguan, Referral, dll. Claim via livechat." },
   { keys: ["hadiah totomacau 5d","totomacau","5d","toto","pasaran"], reply: "HADIAH 5D TOTO MACAU TIPE BET FULL:\n5D: x88,000\n4D: x9,000\n3D: x950\n2D: x95\nColok Bebas: x0.9 - x200\nColok Naga: x12-30\nColok Jitu: x8\nSHIO: x10\nDASAR: x1 untuk selengkapnya bisa tanya ke livechat bosku" },
-
-  
 ];
 
-
-// =================================
+// ============================
 // DEFAULT & KATA KASAR
-// =================================
-const defaultReply = "Untuk Kendala Tersebut.\nSilakan Menghubungi kami via livechat ya bosku";
+// ============================
+const defaultReply = "Halo bosku 👋 Ada yang bisa dibantu soal PMTOTO?";
 const kataKasar = ["anjing","bajingan","tolol","kampret","kontol"];
 const replyKasar = ["😅 Tenang dulu ya, jangan marah-marah.","🙃 Santai, kita bantu kok.","😌 Mohon jangan pakai kata kasar, nanti kita nggak bisa bantu lebih cepat"];
 
-// =================================
-// START
-// =================================
+// ============================
+// START COMMAND
+// ============================
 bot.onText(/\/start/, (msg) => {
     const chatId = msg.chat.id;
 
-    // Kirim gambar banner dulu
-    bot.sendPhoto(chatId, 'https://obscura404.top/5bd98fd7/images/1767953724_6960d53c397af.webp', { caption: "👋 Selamat datang di bot PMTOTO Saya Alya Mikhailovna ada yang bisa saya bantu bosku ?." })
-        .then(() => {
-            // Baru kirim teks + inline keyboard
-            bot.sendMessage(chatId, "Bisa Di Klik Tombol Di bawah Ini Untuk Akses Kami ya bosku:", {
-                reply_markup: {
-                    inline_keyboard: inlineKeyboard
-                }
-            });
-        })
-        .catch(err => console.log(err));
+    // Kirim banner dulu
+    bot.sendPhoto(chatId, 'https://obscura404.top/5bd98fd7/images/1767953724_6960d53c397af.webp', 
+    { caption: "👋 Selamat datang di bot PMTOTO Saya Alya Mikhailovna, ada yang bisa saya bantu bosku ?." })
+    .then(() => {
+        bot.sendMessage(chatId, "Bisa Di Klik Tombol Di bawah Ini Untuk Akses Kami ya bosku:", {
+            reply_markup: { inline_keyboard: inlineKeyboard }
+        });
+    })
+    .catch(err => console.log(err));
 });
 
-
-// =================================
-// HANDLE CALLBACK (TOMBOL INLINE)
+// ============================
+// CALLBACK INLINE
+// ============================
 bot.on("callback_query", (callbackQuery) => {
   const chatId = callbackQuery.message.chat.id;
   const data = callbackQuery.data;
 
-  // cek keywordReplies
   let found = false;
   for (const item of keywordReplies) {
     if (item.keys.includes(data)) {
@@ -85,15 +84,38 @@ bot.on("callback_query", (callbackQuery) => {
   bot.answerCallbackQuery(callbackQuery.id);
 });
 
-// =================================
-// HANDLE PESAN MANUAL
-bot.on("message", (msg) => {
+// ============================
+// FUNGSI AI FALLBACK (Gemini Free API)
+// ============================
+async function aiReply(userText) {
+  if (!GEMINI_API_KEY) return defaultReply; // kalau key tidak ada, pakai default
+  const prompt = `
+Kamu adalah BOT RESMI PMTOTO.
+Jawab santai tapi tetap sesuai konteks PMTOTO. jangan menjelek kan pmtoto, kalau ada keyword member kamu bisa ikuti key yang tersedia dan tambahkan sedikit bumbu
+User: "${userText}"
+`;
+  try {
+    const res = await axios.post(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`,
+      { contents: [{ parts: [{ text: prompt }] }] }
+    );
+    return res.data.candidates[0].content.parts[0].text;
+  } catch (err) {
+    console.error(err);
+    return defaultReply;
+  }
+}
+
+// ============================
+// HANDLE MANUAL MESSAGE
+// ============================
+bot.on("message", async (msg) => {
   if (!msg.text || msg.text === "/start") return;
 
   const chatId = msg.chat.id;
   const text = msg.text.toLowerCase();
 
-  // cek kata kasar
+  // kata kasar
   for (let kata of kataKasar) {
     if (text.includes(kata)) {
       bot.sendMessage(chatId, replyKasar[Math.floor(Math.random()*replyKasar.length)]);
@@ -111,6 +133,7 @@ bot.on("message", (msg) => {
     }
   }
 
-  // default
-  bot.sendMessage(chatId, defaultReply);
+  // fallback AI
+  const reply = await aiReply(msg.text);
+  bot.sendMessage(chatId, reply);
 });
