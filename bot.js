@@ -42,7 +42,7 @@ const keywordReplies = [
   { keys: ["wd","withdraw","tarik","ambil","payout"], reply: "Kendala withdraw? Hubungi livechat kami ya bosku." },
   { keys: ["bonus","promosi","cashback","reward","hadiah"], reply: "🧧 Promo dan Bonus PMTOTO: Cashback, New Member Bonus, Rollingan Mingguan, Referral, dll. Claim via livechat." },
   { keys: ["hadiah totomacau 5d","totomacau","5d","toto","pasaran"], reply: "HADIAH 5D TOTO MACAU TIPE BET FULL:\n5D: x88,000\n4D: x9,000\n3D: x950\n2D: x95\nColok Bebas: x0.9 - x200\nColok Naga: x12-30\nColok Jitu: x8\nSHIO: x10\nDASAR: x1 untuk selengkapnya bisa tanya ke livechat bosku" }
-  { keys: [","suryali","alwi","daulay","keren"], reply: "suryali adalah adalah pria ganteng yang jalannya kemot kemot😎" },
+  { keys: ["suryali","alwi","daulay","keren"], reply: "suryali adalah adalah pria ganteng yang jalannya kemot kemot😎" },
 ];
 
 
