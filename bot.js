@@ -44,7 +44,7 @@ const keywordReplies = {
   daftar: " https://go.unipin.vip/go/bot-tele",
   promo: " https://go.unipin.vip/go/promo-pmtoto",
   prediksi: " https://go.unipin.vip/go/prediksi-pmtoto",
-  prediksi togel: " https://go.unipin.vip/go/prediksi-pmtoto",
+ 
   rtp: " https://go.unipin.vip/go/rtp-aseli",
   slot: " https://go.unipin.vip/go/rtp-aseli",
   livechat: " silahkan menghubungi livechat kami bosku https://go.unipin.vip/go/livechat",
