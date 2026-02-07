@@ -14,14 +14,6 @@ const inlineKeyboard = [
   [{ text: "👤 Hubungi Kami", url: "https://t.me/pmtotoindonesia" }]
 ];
 
-// START
-bot.onText(/\/start/, (msg) => {
-  bot.sendMessage(msg.chat.id, "👋 Selamat datang di bot OLXTOTO!\nSilakan login untuk memulai.", {
-    reply_markup: { inline_keyboard: inlineKeyboard }
-  });
-});
-
-
 // =================================
 // ✅ REPLY KHUSUS KETIK MANUAL / CALLBACK
 // =================================
