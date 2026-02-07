@@ -1,16 +1,15 @@
-const TelegramBot = require('node-telegram-bot-api');
-const fs = require('fs');
+const TelegramBot = require("node-telegram-bot-api");
+const fs = require("fs");
 
-const TOKEN = process.env.TOKEN || "ISI_TOKEN_KAMU";
+const TOKEN = process.env.TOKEN || "8594734609:AAGiezZNzydu5_4tKqS8pIhT0Y_IjV8Kv5A";
 const bot = new TelegramBot(TOKEN, { polling: true });
 
 console.log("Bot berjalan...");
 
 
-// =============================
-// MENU KEYBOARD (TOMBOL)
-// tinggal tambah baris kalau mau
-// =============================
+// =================================
+// TOMBOL MENU
+// =================================
 const menuButtons = [
   ["🔐 Login", "📝 Daftar"],
   ["🎁 Promosi", "🎯 Prediksi"],
@@ -19,119 +18,111 @@ const menuButtons = [
 ];
 
 
-// =============================
-// SEMUA JAWABAN DI SINI
-// 🔥 edit bagian ini saja
-// =============================
+// =================================
+// 🔥 SEMUA SETTING DI SINI SAJA
+// =================================
 const menuData = {
-  login: {
+  "🔐 Login": {
     keywords: ["login", "masuk", "signin"],
+    buttonReply: "Silakan login akun kamu 👇",
     reply: "🔐 Login di sini:\nhttps://go.unipin.vip/go/bot-tele"
   },
 
-  daftar: {
-    keywords: ["daftar", "register", "buat akun"],
-    reply: "📝 Daftar akun baru:\nhttps://go.unipin.vip/go/bot-tele"
+  "📝 Daftar": {
+    keywords: ["daftar", "register"],
+    buttonReply: "Silakan daftar akun baru 👇",
+    reply: "📝 https://go.unipin.vip/go/bot-tele"
   },
 
-  promosi: {
+  "🎁 Promosi": {
     keywords: ["promo", "promosi", "bonus"],
-    reply: "🎁 Promo terbaru:\nhttps://go.unipin.vip/go/promo-pmtoto"
+    buttonReply: "Daftar promo tersedia hari ini 🎁",
+    reply: "🎁 Detail promo:\nhttps://go.unipin.vip/go/promo-pmtoto"
   },
 
-  prediksi: {
+  "🎯 Prediksi": {
     keywords: ["prediksi", "togel", "angka"],
-    reply: "🎯 Prediksi hari ini:\nhttps://go.unipin.vip/go/prediksi-pmtoto"
+    buttonReply: "Prediksi sudah disiapkan 🎯",
+    reply: "🎯 Lihat prediksi:\nhttps://go.unipin.vip/go/prediksi-pmtoto"
   },
 
-  rtp: {
+  "📊 RTP": {
     keywords: ["rtp", "slot", "gacor"],
-    reply: "📊 RTP Slot hari ini:\nhttps://go.unipin.vip/go/rtp-aseli"
+    buttonReply: "RTP slot hari ini tersedia 📊",
+    reply: "📊 Cek RTP:\nhttps://go.unipin.vip/go/rtp-aseli"
   },
 
-  livechat: {
-    keywords: ["cs", "admin", "livechat", "bantuan"],
-    reply: "💬 Hubungi CS:\nhttps://go.unipin.vip/go/livechat"
+  "💬 Livechat": {
+    keywords: ["cs", "admin", "bantuan"],
+    buttonReply: "Menghubungkan ke CS...",
+    reply: "💬 https://go.unipin.vip/go/livechat"
   },
 
-  download: {
+  "📲 Download": {
     keywords: ["apk", "download", "app"],
-    reply: "📲 Download APK resmi:\nhttps://go.unipin.vip/go/aplikasi-pmtoto"
+    buttonReply: "APK tersedia untuk diunduh 📲",
+    reply: "📲 https://go.unipin.vip/go/aplikasi-pmtoto"
   },
 
-  hubungi: {
+  "👤 Hubungi": {
     keywords: ["kontak", "hubungi", "wa"],
-    reply: "👤 Admin Telegram:\n@pmtotoindonesia"
+    buttonReply: "Hubungi admin di bawah 👇",
+    reply: "@pmtotoindonesia"
   }
 };
 
 
-// =============================
-// DEFAULT JAWABAN (kalau ga ketemu)
-// =============================
+// =================================
+// DEFAULT
+// =================================
 const defaultReply =
-  "❌ Pertanyaan tidak ditemukan.\nSilakan hubungi livechat:\nhttps://go.unipin.vip/go/livechat";
+  "❌ Tidak ditemukan.\nSilakan hubungi livechat:\nhttps://go.unipin.vip/go/livechat";
 
 
-// =============================
-// SIMPAN USER
-// =============================
-const usersFile = "./users.json";
-
-function saveUser(id) {
-  let users = [];
-
-  if (fs.existsSync(usersFile)) {
-    users = JSON.parse(fs.readFileSync(usersFile));
-  }
-
-  if (!users.includes(id)) {
-    users.push(id);
-    fs.writeFileSync(usersFile, JSON.stringify(users, null, 2));
-  }
-}
-
-
-// =============================
-// START → tampilkan tombol
-// =============================
+// =================================
+// START
+// =================================
 bot.onText(/\/start/, (msg) => {
-  const chatId = msg.chat.id;
-  saveUser(msg.from.id);
-
-  bot.sendMessage(chatId, "👋 Selamat datang!\nSilakan pilih menu:", {
+  bot.sendMessage(msg.chat.id, "Selamat datang! Silakan pilih menu:", {
     reply_markup: {
       keyboard: menuButtons,
-      resize_keyboard: true,
-      one_time_keyboard: false
+      resize_keyboard: true
     }
   });
 });
 
 
-// =============================
-// HANDLE SEMUA PESAN
-// =============================
+// =================================
+// HANDLE MESSAGE
+// =================================
 bot.on("message", (msg) => {
-  if (!msg.text) return;
-  if (msg.text === "/start") return;
+  if (!msg.text || msg.text === "/start") return;
 
   const chatId = msg.chat.id;
-  const text = msg.text.toLowerCase().replace(/\s/g, ""); // hilangin spasi
-  saveUser(msg.from.id);
+  const text = msg.text.toLowerCase();
 
-  // cek semua keyword
-  for (const key in menuData) {
-    const { keywords, reply } = menuData[key];
+  // =================================
+  // 1️⃣ CEK TOMBOL (exact match)
+  // =================================
+  if (menuData[msg.text]) {
+    bot.sendMessage(chatId, menuData[msg.text].buttonReply);
+    return;
+  }
 
-    for (const word of keywords) {
+  // =================================
+  // 2️⃣ CEK KEYWORD MANUAL
+  // =================================
+  for (const menu in menuData) {
+    for (const word of menuData[menu].keywords) {
       if (text.includes(word)) {
-        bot.sendMessage(chatId, reply);
+        bot.sendMessage(chatId, menuData[menu].reply);
         return;
       }
     }
   }
 
-  // kalau tidak ketemu
+  // =================================
+  // 3️⃣ DEFAULT
+  // =================================
   bot.sendMessage(chatId, defaultReply);
 });
