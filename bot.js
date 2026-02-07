@@ -1,7 +1,7 @@
 const TelegramBot = require('node-telegram-bot-api');
 const fs = require('fs');
 
-const TOKEN = "ISI_TOKEN_KAMU_DISINI";
+const TOKEN = "8594734609:AAGiezZNzydu5_4tKqS8pIhT0Y_IjV8Kv5A";
 const bot = new TelegramBot(TOKEN, { polling: true });
 
 console.log("Bot berjalan...");
