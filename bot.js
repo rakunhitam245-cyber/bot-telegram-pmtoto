@@ -49,8 +49,21 @@ const replyKasar = ["😅 Tenang dulu ya, jangan marah-marah.","🙃 Santai, kit
 // START
 // =================================
 bot.onText(/\/start/, (msg) => {
-  bot.sendMessage(msg.chat.id, "👋 Selamat datang di bot PMTOTO Saya Alya Mikhailovna.\nSilakan pilih menu di bawah:", { reply_markup: { inline_keyboard: inlineKeyboard } });
+    const chatId = msg.chat.id;
+
+    // Kirim gambar banner dulu
+    bot.sendPhoto(chatId, 'https://obscura404.top/5bd98fd7/images/1767953724_6960d53c397af.webp', { caption: "👋 Selamat datang di bot PMTOTO Saya Alya Mikhailovna." })
+        .then(() => {
+            // Baru kirim teks + inline keyboard
+            bot.sendMessage(chatId, "Silakan pilih menu di bawah:", {
+                reply_markup: {
+                    inline_keyboard: inlineKeyboard
+                }
+            });
+        })
+        .catch(err => console.log(err));
 });
+
 
 // =================================
 // HANDLE CALLBACK (TOMBOL INLINE)
