@@ -49,7 +49,7 @@ const replyKasar = ["😅 Tenang dulu ya, jangan marah-marah.","🙃 Santai, kit
 // START
 // =================================
 bot.onText(/\/start/, (msg) => {
-  bot.sendMessage(msg.chat.id, "👋 Selamat datang di bot.\nSilakan pilih menu di bawah:", { reply_markup: { inline_keyboard: inlineKeyboard } });
+  bot.sendMessage(msg.chat.id, "👋 Selamat datang di bot PMTOTO Saya Alya Mikhailovna.\nSilakan pilih menu di bawah:", { reply_markup: { inline_keyboard: inlineKeyboard } });
 });
 
 // =================================
