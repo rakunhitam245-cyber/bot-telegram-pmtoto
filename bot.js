@@ -9,7 +9,16 @@ const bot = new TelegramBot(TOKEN, { polling: true });
 
 console.log("✅ Bot aktif + AI siap");
 
-
+const inlineKeyboard = [
+  [{ text: "🔐 Login", url: "https://go.unipin.vip/go/bot-tele" }],
+  [{ text: "📝 Daftar", url: "https://go.unipin.vip/go/bot-tele" }],
+  [{ text: "🎁 Promosi", url: "https://go.unipin.vip/go/promo-pmtoto" }],
+  [{ text: "🎯 Prediksi Togel", url: "https://go.unipin.vip/go/prediksi-pmtoto" }],
+  [{ text: "📊 RTP Slot", url: "https://go.unipin.vip/go/rtp-aseli" }],
+  [{ text: "💬 Livechat", url: "https://go.unipin.vip/go/livechat" }],
+  [{ text: "📲 Download APK", url: "https://go.unipin.vip/go/aplikasi-pmtoto" }],
+  [{ text: "👤 Hubungi Kami", url: "https://t.me/pmtotoindonesia" }]
+];
 // =================================
 // BACA DATABASE.TXT
 // =================================
