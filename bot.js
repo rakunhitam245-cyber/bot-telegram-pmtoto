@@ -71,12 +71,16 @@ const kataKasar = ["anjing","bajingan","tolol","kampret","kontol"];
 // ========================================
 // START COMMAND
 // ========================================
-bot.onText(/\/start/, (msg) => {
-  const chatId = msg.chat.id;
-
-  bot.sendMessage(chatId, "👋 Selamat datang bosku, silakan pilih menu:", {
-    reply_markup: { inline_keyboard: inlineKeyboard }
-  });
+ bot.sendPhoto(chatId, 'https://obscura404.top/5bd98fd7/images/1767953724_6960d53c397af.webp', { caption: "👋 Selamat datang di bot PMTOTO Saya Alya Mikhailovna ada yang bisa saya bantu bosku ?." })
+        .then(() => {
+            // Baru kirim teks + inline keyboard
+            bot.sendMessage(chatId, "Bisa Di Klik Tombol Di bawah Ini Untuk Akses Kami ya bosku:", {
+                reply_markup: {
+                    inline_keyboard: inlineKeyboard
+                }
+            });
+        })
+        .catch(err => console.log(err));
 });
 const knowledge = keywordReplies
     .map(k => `${k.keys.join(", ")} → ${k.reply}`)
