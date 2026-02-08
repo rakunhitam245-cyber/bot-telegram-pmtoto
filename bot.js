@@ -17,17 +17,45 @@ function getRandomByTag(tag) {
   try {
     const lines = fs.readFileSync("database.txt", "utf8").split("\n");
 
-    const list = lines
-      .filter(v => v.toLowerCase().startsWith(tag.toLowerCase() + ":"))
-      .map(v => v.slice(tag.length + 1).trim()); // <- FIX AMAN
+    let blocks = [];
+    let collecting = false;
+    let current = [];
 
-    if (!list.length) return "";
+    for (let line of lines) {
+      line = line.trim();
 
-    return list[Math.floor(Math.random() * list.length)];
+      // mulai block
+      if (line.toLowerCase() === tag.toLowerCase() + ":") {
+        collecting = true;
+        current = [];
+        continue;
+      }
+
+      // kalau kosong = selesai block
+      if (collecting && line === "") {
+        if (current.length) blocks.push(current.join("\n"));
+        collecting = false;
+        continue;
+      }
+
+      // kumpulin isi
+      if (collecting) {
+        current.push(line);
+      }
+    }
+
+    // jaga-jaga kalau file tidak diakhiri enter
+    if (current.length) blocks.push(current.join("\n"));
+
+    if (!blocks.length) return "";
+
+    return blocks[Math.floor(Math.random() * blocks.length)];
+
   } catch {
     return "";
   }
 }
+
 
 
 
