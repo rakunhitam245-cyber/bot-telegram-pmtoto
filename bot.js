@@ -18,8 +18,8 @@ function getRandomByTag(tag) {
     const lines = fs.readFileSync("database.txt", "utf8").split("\n");
 
     const list = lines
-      .filter(v => v.toLowerCase().startsWith(tag + ":"))
-      .map(v => v.split(":")[1].trim());
+      .filter(v => v.toLowerCase().startsWith(tag.toLowerCase() + ":"))
+      .map(v => v.slice(tag.length + 1).trim()); // <- FIX AMAN
 
     if (!list.length) return "";
 
@@ -28,6 +28,7 @@ function getRandomByTag(tag) {
     return "";
   }
 }
+
 
 
 // =================================
