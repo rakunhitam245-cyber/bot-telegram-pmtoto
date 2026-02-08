@@ -1,8 +1,23 @@
 const TelegramBot = require("node-telegram-bot-api");
-const TOKEN = process.env.TOKEN || "8594734609:AAGg-WY4WExETLAPdvEYNwF7EvqD-t4Q05c";
+const axios = require("axios");
+
+
+// =================================
+// ISI TOKEN DI SINI
+// =================================
+const TOKEN = "8594734609:AAGg-WY4WExETLAPdvEYNwF7EvqD-t4Q05c";
+const GROQ_API_KEY = "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";
+// =================================
+
+
 const bot = new TelegramBot(TOKEN, { polling: true });
 
-// Tombol dengan URL agar langsung bisa klik daftar/login
+console.log("✅ Bot aktif + AI siap...");
+
+
+// =================================
+// INLINE BUTTON
+// =================================
 const inlineKeyboard = [
   [{ text: "🔐 Login", url: "https://go.unipin.vip/go/bot-tele" }],
   [{ text: "📝 Daftar", url: "https://go.unipin.vip/go/bot-tele" }],
@@ -14,8 +29,9 @@ const inlineKeyboard = [
   [{ text: "👤 Hubungi Kami", url: "https://t.me/pmtotoindonesia" }]
 ];
 
+
 // =================================
-// ✅ REPLY KHUSUS KETIK MANUAL / CALLBACK
+// KEYWORD REPLIES
 // =================================
 const keywordReplies = [
   { keys: ["login","masuk","akun","user","member"], reply: "🔐 Login di sini:\nhttps://go.unipin.vip/go/bot-tele" },
@@ -39,78 +55,96 @@ const keywordReplies = [
 
 
 // =================================
-// DEFAULT & KATA KASAR
+// KATA KASAR
 // =================================
-const defaultReply = "Untuk Kendala Tersebut.\nSilakan Menghubungi kami via livechat ya bosku";
-const kataKasar = ["anjing","bajingan","tolol","kampret","kontol"];
-const replyKasar = ["😅 Tenang dulu ya, jangan marah-marah.","🙃 Santai, kita bantu kok.","😌 Mohon jangan pakai kata kasar, nanti kita nggak bisa bantu lebih cepat"];
+const kataKasar = ["anjing","tolol","kontol","bajingan"];
+const replyKasar = "😅 Santai bosku, kita bantu ya...";
+
 
 // =================================
-// START
+// AI FUNCTION (GROQ)
+// =================================
+async function aiReply(text) {
+  try {
+    const res = await axios.post(
+      "https://api.groq.com/openai/v1/chat/completions",
+      {
+        model: "llama-3.1-8b-instant",
+        messages: [
+          {
+            role: "system",
+            content: "Kamu adalah customer service PMTOTO, jawab santai, ramah, singkat. jangan menjelekan pmtoto"
+          },
+          {
+            role: "user",
+            content: text
+          }
+        ]
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${GROQ_API_KEY}`,
+          "Content-Type": "application/json"
+        }
+      }
+    );
+
+    return res.data.choices[0].message.content;
+
+  } catch (e) {
+    console.log(e.response?.data || e.message);
+    return "Server AI lagi sibuk bosku, coba lagi ya 🙏";
+  }
+}
+
+
+// =================================
+// START COMMAND
 // =================================
 bot.onText(/\/start/, (msg) => {
-    const chatId = msg.chat.id;
+  const chatId = msg.chat.id;
 
-    // Kirim gambar banner dulu
-    bot.sendPhoto(chatId, 'https://obscura404.top/5bd98fd7/images/1767953724_6960d53c397af.webp', { caption: "👋 Selamat datang di bot PMTOTO Saya Alya Mikhailovna ada yang bisa saya bantu bosku ?." })
-        .then(() => {
-            // Baru kirim teks + inline keyboard
-            bot.sendMessage(chatId, "Bisa Di Klik Tombol Di bawah Ini Untuk Akses Kami ya bosku:", {
-                reply_markup: {
-                    inline_keyboard: inlineKeyboard
-                }
-            });
-        })
-        .catch(err => console.log(err));
+  bot.sendPhoto(
+    chatId,
+    "https://obscura404.top/5bd98fd7/images/1767953724_6960d53c397af.webp",
+    { caption: "👋 Selamat datang di PMTOTO saya Alya Mikhailovna, ada yang bisa dibantu bosku?" }
+  ).then(() => {
+    bot.sendMessage(chatId, "Silakan pilih menu:", {
+      reply_markup: { inline_keyboard: inlineKeyboard }
+    });
+  });
 });
 
 
 // =================================
-// HANDLE CALLBACK (TOMBOL INLINE)
-bot.on("callback_query", (callbackQuery) => {
-  const chatId = callbackQuery.message.chat.id;
-  const data = callbackQuery.data;
-
-  // cek keywordReplies
-  let found = false;
-  for (const item of keywordReplies) {
-    if (item.keys.includes(data)) {
-      bot.sendMessage(chatId, item.reply);
-      found = true;
-      break;
-    }
-  }
-
-  if (!found) bot.sendMessage(chatId, defaultReply);
-  bot.answerCallbackQuery(callbackQuery.id);
-});
-
+// HANDLE CHAT
 // =================================
-// HANDLE PESAN MANUAL
-bot.on("message", (msg) => {
+bot.on("message", async (msg) => {
   if (!msg.text || msg.text === "/start") return;
 
   const chatId = msg.chat.id;
   const text = msg.text.toLowerCase();
 
-  // cek kata kasar
-  for (let kata of kataKasar) {
-    if (text.includes(kata)) {
-      bot.sendMessage(chatId, replyKasar[Math.floor(Math.random()*replyKasar.length)]);
-      return;
+
+  // 1️⃣ kata kasar
+  for (let k of kataKasar) {
+    if (text.includes(k)) {
+      return bot.sendMessage(chatId, replyKasar);
     }
   }
 
-  // cek keyword manual
+
+  // 2️⃣ keyword
   for (const item of keywordReplies) {
     for (let key of item.keys) {
       if (text.includes(key)) {
-        bot.sendMessage(chatId, item.reply);
-        return;
+        return bot.sendMessage(chatId, item.reply);
       }
     }
   }
 
-  // default
-  bot.sendMessage(chatId, defaultReply);
+
+  // 3️⃣ AI fallback
+  const reply = await aiReply(msg.text);
+  bot.sendMessage(chatId, reply);
 });
