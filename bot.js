@@ -1,18 +1,32 @@
-
+// =======================================
+// 🤖 TELEGRAM BOT + GEMINI AI (FINAL FIX)
+// =======================================
 
 const TelegramBot = require("node-telegram-bot-api");
 const axios = require("axios");
 
 
-
+// =======================================
+// 🔥 ISI TOKEN DI SINI (WAJIB)
+// =======================================
 const TOKEN = "8594734609:AAGg-WY4WExETLAPdvEYNwF7EvqD-t4Q05c";
 const GEMINI_API_KEY = "AIzaSyAXR-RAP6bMb-2fwAcu45CyKV3f7hskn8c";
+// =======================================
 
+
+// =======================================
+// START BOT
+// =======================================
 const bot = new TelegramBot(TOKEN, { polling: true });
-console.log("✅ Bot aktif...");
+
+console.log("✅ Bot jalan...");
+console.log("TOKEN:", TOKEN ? "OK" : "KOSONG");
+console.log("GEMINI:", GEMINI_API_KEY ? "OK" : "KOSONG");
 
 
-
+// =======================================
+// INLINE BUTTON
+// =======================================
 const inlineKeyboard = [
   [{ text: "🔐 Login", url: "https://go.unipin.vip/go/bot-tele" }],
   [{ text: "📝 Daftar", url: "https://go.unipin.vip/go/bot-tele" }],
@@ -24,8 +38,9 @@ const inlineKeyboard = [
   [{ text: "👤 Hubungi Kami", url: "https://t.me/pmtotoindonesia" }]
 ];
 
-
-
+// =======================================
+// DATABASE JAWABAN (EDIT SENDIRI)
+// =======================================
 const keywordReplies = [
   { keys: ["login","masuk","akun","user","member"], reply: "🔐 Login di sini:\nhttps://go.unipin.vip/go/bot-tele" },
   { keys: ["daftar","register","signup","buat akun","baru"], reply: "📝 Daftar akun baru silahkan menggunakan link di bawah ini bosku:\nhttps://go.unipin.vip/go/bot-tele" },
@@ -44,42 +59,50 @@ const keywordReplies = [
   { keys: ["hadiah totomacau 5d","totomacau","5d","toto","pasaran"], reply: "HADIAH 5D TOTO MACAU TIPE BET FULL:\n5D: x88,000\n4D: x9,000\n3D: x950\n2D: x95\nColok Bebas: x0.9 - x200\nColok Naga: x12-30\nColok Jitu: x8\nSHIO: x10\nDASAR: x1 untuk selengkapnya bisa tanya ke livechat bosku" },
 ];
 
-
-
 const defaultReply = "Halo bosku 👋 Ada yang bisa dibantu?";
 
-const kataKasar = ["anjing","bajingan","tolol","kampret","kontol"];
 
-
-
-bot.onText(/\/start/, (msg) => {
-  const chatId = msg.chat.id;
-
-  bot.sendMessage(chatId, "👋 Selamat datang bosku, silakan pilih menu:", {
-    reply_markup: { inline_keyboard: inlineKeyboard }
-  });
+// =======================================
+// START COMMAND
+// =======================================
+ bot.sendPhoto(chatId, 'https://obscura404.top/5bd98fd7/images/1767953724_6960d53c397af.webp', { caption: "👋 Selamat datang di bot PMTOTO Saya Alya Mikhailovna ada yang bisa saya bantu bosku ?." })
+        .then(() => {
+            // Baru kirim teks + inline keyboard
+            bot.sendMessage(chatId, "Bisa Di Klik Tombol Di bawah Ini Untuk Akses Kami ya bosku:", {
+                reply_markup: {
+                    inline_keyboard: inlineKeyboard
+                }
+            });
+        })
+        .catch(err => console.log(err));
 });
 
 
+// =======================================
+// 🧠 GEMINI AI FUNCTION (DEBUG AKTIF)
+// =======================================
 async function aiReply(userText) {
-  if (!GEMINI_API_KEY) return defaultReply;
 
+  console.log("\n===== AI DIPANGGIL =====");
+  console.log("User:", userText);
 
+  if (!GEMINI_API_KEY) {
+    console.log("❌ API KEY KOSONG");
+    return defaultReply;
+  }
+
+  // buat knowledge dari keyword
   const knowledge = keywordReplies
-    .map(k => `Keyword: ${k.keys.join(", ")}\nJawaban: ${k.reply}`)
-    .join("\n\n");
+    .map(k => `${k.keys.join(", ")} → ${k.reply}`)
+    .join("\n");
 
   const prompt = `
-Kamu adalah customer service resmi.
+Kamu adalah customer service.
 
-Gunakan database berikut untuk menjawab:
+Database info:
 ${knowledge}
 
-Aturan:
-- jawab santai & ramah
-- improvisasi seperti manusia
-- gunakan link/jawaban dari database jika relevan
-- jangan jawab di luar topik
+Jawab santai & natural sesuai pertanyaan user.
 
 User: ${userText}
 `;
@@ -88,43 +111,54 @@ User: ${userText}
     const res = await axios.post(
       `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`,
       {
-        contents: [{ parts: [{ text: prompt }] }]
+        contents: [
+          {
+            parts: [{ text: prompt }]
+          }
+        ]
       }
     );
 
-    return res.data.candidates?.[0]?.content?.parts?.[0]?.text || defaultReply;
+    const text = res.data.candidates?.[0]?.content?.parts?.[0]?.text;
+
+    console.log("✅ AI BERHASIL:", text);
+
+    return text || defaultReply;
 
   } catch (err) {
-    console.log("Gemini error:", err.message);
+    console.log("❌ GEMINI ERROR:");
+    console.log(err.response?.data || err.message);
     return defaultReply;
   }
 }
 
 
-
+// =======================================
+// HANDLE MESSAGE
+// =======================================
 bot.on("message", async (msg) => {
   if (!msg.text || msg.text === "/start") return;
 
   const chatId = msg.chat.id;
   const text = msg.text.toLowerCase();
 
-
-  if (kataKasar.some(k => text.includes(k))) {
-    return bot.sendMessage(chatId, "😅 Santai ya bosku, kita bantu kok");
-  }
+  console.log("\nPesan masuk:", text);
 
 
-
+  // =========================
+  // keyword manual (cepat)
+  // =========================
   for (const item of keywordReplies) {
     if (item.keys.some(k => text.includes(k))) {
+      console.log("⚡ Manual reply");
       return bot.sendMessage(chatId, item.reply);
     }
   }
 
 
+  // =========================
+  // AI fallback
+  // =========================
   const reply = await aiReply(msg.text);
-
-  console.log("AI:", reply);
-
   bot.sendMessage(chatId, reply);
 });
