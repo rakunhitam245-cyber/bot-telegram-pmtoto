@@ -65,26 +65,28 @@ function getRandomByTag(tag) {
 function detectData(text) {
   const t = text.toLowerCase();
 
-  if (t.includes("login") || t.includes("masuk"))
-    return getRandomByTag("login");
+  try {
+    const lines = fs.readFileSync("database.txt", "utf8").split("\n");
 
-  if (t.includes("daftar") || t.includes("register"))
-    return getRandomByTag("daftar");
+    // ambil semua tag (baris yang diakhiri :)
+    const tags = lines
+      .filter(l => l.trim().endsWith(":"))
+      .map(l => l.replace(":", "").trim().toLowerCase());
 
-  if (t.includes("rtp") || t.includes("pola"))
-    return getRandomByTag("rtp");
+    // cek otomatis
+    for (const tag of tags) {
+      if (t.includes(tag)) {
+        return getRandomByTag(tag);
+      }
+    }
 
-  if (t.includes("livechat") || t.includes("cs") || t.includes("admin"))
-    return getRandomByTag("livechat");
+    return "";
 
-  if (t.includes("promo") || t.includes("bonus"))
-    return getRandomByTag("promo");
-
-  if (t.includes("info") || t.includes("deposit"))
-    return getRandomByTag("info");
-
-  return "";
+  } catch {
+    return "";
+  }
 }
+
 
 
 // =================================
