@@ -34,24 +34,129 @@ const inlineKeyboard = [
 // KEYWORD REPLIES
 // =================================
 const keywordReplies = [
-  { keys: ["login","masuk","akun","user","member"], reply: "🔐 Login di sini:\nhttps://go.unipin.vip/go/bot-tele" },
-  { keys: ["daftar","register","signup","buat akun","baru"], reply: "📝 Daftar akun baru silahkan menggunakan link di bawah ini bosku:\nhttps://go.unipin.vip/go/bot-tele" },
-  { keys: ["prediksi","prediksi togel","togel","angka","hasil"], reply: "🎯 Lihat prediksi lengkap silahkan klik link ini ya bosku:\nhttps://go.unipin.vip/go/prediksi-pmtoto" },
-  { keys: ["rtp","slot","game slot","hasil slot","persentase"], reply: "📊 Cek RTP Slot di sini jangan lupa bermain dengan sabar ya bosku:\nhttps://go.unipin.vip/go/rtp-aseli" },
-  { keys: ["livechat","cs","admin","chat","atmin"], reply: "💬 Silahkan menghubungi livechat kami:\nhttps://go.unipin.vip/go/livechat\n" },
-  { keys: ["aplikasi","apk","download","app","install"], reply: "📲 Link Download APK PMTOTO:\nhttps://go.unipin.vip/go/aplikasi-pmtoto" },
-  { keys: ["kontak","hubungi","contact","support","tele"], reply: "Berikut Kontak Official PMTOTO 24 Jam Online:\nWHATSAPP: https://wa.me/+6281260428264\nTELEGRAM: https://t.me/pmtotoindonesia\nROOM RESULT: https://go.unipin.vip/go/room-result" },
-  { keys: ["invest","syarat","betting","aturan","tarung"], reply: "Syarat betting PMTOTO:\n- BBFS: 4-7 digit\n- Angka Tarung: 4-7 digit\n- 4D/3D/2D: Bebas Line\nBoleh Betting Berulang bosku\nMohon dipahami demi kelancaran dan kenyamanan bermain." },
-  { keys: ["hadiah","prize","reward","togel","pasaran"], reply: "Berikut Hadiah Pasaran Togel PMTOTO: 4D,3D,2D sesuai pasaran besar. Info detail via livechat." },
-  { keys: ["deposit","depo","topup","isi saldo","bayar"], reply: "💰 Kendala deposit silahkan hubungi livechat kami ya bosku: @pmtotoindonesia" },
-  { keys: ["rollingan","bonus mingguan","cashback","referral","promosi"], reply: "Berikut bonus mingguan PMTOTO:\n- Bonus CashBack Slot Senin\n- Bonus Rollingan Casino Rabu\n- Bonus Referral Slot Jumat, dll." },
-  { keys: ["password","lupa","pass","kata sandi","reset"], reply: "🔑 Lupa password? Silahkan hubungi admin: @pmtotoindonesia" },
-  { keys: ["wd","withdraw","tarik","ambil","payout"], reply: "Kendala withdraw? Hubungi livechat kami ya bosku." },
-  { keys: ["bonus","promosi","cashback","reward","hadiah"], reply: "🧧 Promo dan Bonus PMTOTO: Cashback, New Member Bonus, Rollingan Mingguan, Referral, dll. Claim via livechat." },
-  { keys: ["hadiah totomacau 5d","totomacau","5d","toto","pasaran"], reply: "HADIAH 5D TOTO MACAU TIPE BET FULL:\n5D: x88,000\n4D: x9,000\n3D: x950\n2D: x95\nColok Bebas: x0.9 - x200\nColok Naga: x12-30\nColok Jitu: x8\nSHIO: x10\nDASAR: x1 untuk selengkapnya bisa tanya ke livechat bosku" },
 
-  
+  // LINK / ALTERNATIF
+  {
+    keys: ["link pmtoto","link alternatif","link"],
+    reply: `Ketik 🔥 𝐏𝐌𝐓𝐎𝐓𝐎 🔥 di GOOGLE yaa bossku
+
+AKSES MUDAH ANTI LAG:
+https://go.unipin.vip/go/pmtoto
+https://prourl.site/pmtoto`
+  },
+
+  // INVEST / BATAS
+  {
+    keys: ["invest","batas invest","inves","batas inves"],
+    reply: `Syarat betting PMTOTO:
+
+BBFS 4-7 digit
+Angka Tarung 4-7 digit
+4D/3D/2D Bebas Line
+
+Jika melanggar, betting tidak sah ya bosku`
+  },
+
+  // RTP
+  {
+    keys: ["rtp","info rtp","pola"],
+    reply: `Update RTP & POLA setiap hari:
+https://go.unipin.vip/go/rtp-aseli`
+  },
+
+  // KONTAK
+  {
+    keys: ["kontak","wa","whatsapp","telegram","cs","admin"],
+    reply: `Kontak Official PMTOTO:
+
+WA: https://wa.me/6281214469372
+Telegram: https://t.me/pmtotoindonesia`
+  },
+
+  // MINIMAL DEPO
+  {
+    keys: ["minimal","minimal depo","min depo","minimal deposit"],
+    reply: `Minimal Deposit 10.000
+Minimal WD 50.000
+Slot bet mulai 400`
+  },
+
+  // JADWAL
+  {
+    keys: ["jadwal togel","jam berapa","jadwal"],
+    reply: `Jadwal Pasaran:
+https://jadwal-togel-pmtoto.pages.dev/`
+  },
+
+  // BONUS
+  {
+    keys: ["bonus","rollingan","cashback","promo"],
+    reply: `Bonus mingguan:
+• Cashback Slot Senin
+• Rollingan Rabu
+• Referral Jumat`
+  },
+
+  // DISKON
+  {
+    keys: ["diskon","diskon togel"],
+    reply: `Diskon terbesar:
+4D 66%
+3D 59%
+2D 29%`
+  },
+
+  // HADIAH
+  {
+    keys: ["hadiah togel","hadiah","prize"],
+    reply: `Hadiah terbesar:
+4D x10.000
+3D x1.000
+2D x100`
+  },
+
+  // TOTO MACAU
+  {
+    keys: ["toto macau","macau 5d"],
+    reply: `Hadiah TOTO MACAU:
+5D x88.000
+4D x9.000
+3D x950
+2D x95`
+  },
+
+  // MARKETING
+  {
+    keys: ["marketing"],
+    reply: `Hubungi marketing:
+0813-7610-5690`
+  },
+
+  // LUPA PASSWORD
+  {
+    keys: ["lupa password","lupa akun","reset password"],
+    reply: `Silahkan hubungi livechat:
+https://go.unipin.vip/go/livechat`
+  },
+
+  // GAME LIST
+  {
+    keys: ["game","games","permainan","slot apa saja"],
+    reply: `Game tersedia:
+• Slot
+• Togel
+• Live Casino
+• Spaceman`
+  },
+
+  // AMAN
+  {
+    keys: ["aman","trusted","penipu","scam"],
+    reply: `PMTOTO aman dan terpercaya bosku`
+  }
+
 ];
+
 
 
 // =================================
