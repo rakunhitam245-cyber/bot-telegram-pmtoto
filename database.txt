@@ -1,88 +1,26 @@
-login:
-https://login1.com
+login:https://login1.com
 
-promo:
-Bonus cashback 5%
+promo:Bonus cashback 5%
 
-jadwal:
-Setiap hari jam 13:00
+jadwal:Setiap hari jam 13:00
 
-apk:
-https://downloadapk.com
+apk:https://downloadapk.com
 
-livechat:
-https://go.unipin.vip/go/livechat
+livechat:https://go.unipin.vip/go/livechat
 
-minimal deposit:
-REKOMENDASI BO AMAN & TERPERCAYA 𝐏𝐌𝐓𝐎𝐓𝐎
-🔥 𝐒𝐋𝐎𝐓 𝐆𝐀𝐂𝐎𝐑 , 𝐓𝐎𝐆𝐄𝐋 𝐎𝐍𝐋𝐈𝐍𝐄, 𝐋𝐈𝐕𝐄𝐆𝐀𝐌𝐄, & 𝐒𝐏𝐀𝐂𝐄𝐌𝐀𝐍🔥
-    
-🟢 MINIMAL DEPO IDR : 10.000
-🟢 MINIMAL WD IDR : 50.000
-🟢 MINIMAL DEPO PULSA : 20.000 (potongan 20%)
-🟢 MINIMAL BETTINGAN :
-𝐓𝐎𝐆𝐄𝐋 :
-💥4D Rp 100.-
-💥3D Rp 100.-
-💥2D Rp 100.-
-𝐒𝐋𝐎𝐓  :
-💥PRAGMATIC: Rp 400.-
-💥PGSOFT : RP 400.- 
+minimal deposit:REKOMENDASI BO AMAN & TERPERCAYA 𝐏𝐌𝐓𝐎𝐓𝐎🔥 𝐒𝐋𝐎𝐓 𝐆𝐀𝐂𝐎𝐑 , 𝐓𝐎𝐆𝐄𝐋 𝐎𝐍𝐋𝐈𝐍𝐄, 𝐋𝐈𝐕𝐄𝐆𝐀𝐌𝐄, & 𝐒𝐏𝐀𝐂𝐄𝐌𝐀𝐍🔥🟢 MINIMAL DEPO IDR : 10.000🟢 MINIMAL WD IDR : 50.000🟢 MINIMAL DEPO PULSA : 20.000 (potongan 20%)🟢 MINIMAL BETTINGAN :𝐓𝐎𝐆𝐄𝐋 :💥4D Rp 100.-💥3DRp100.💥2D Rp 100.-𝐒𝐋𝐎𝐓  :💥PRAGMATIC: Rp 400.-💥PGSOFT : RP 400.- 
 
 
-promo:
-🧧 Promo dan Bonus 𝐏𝐌𝐓𝐎𝐓𝐎 🧧
-🔥 Bonus Saldo Gratis Bersama 𝐏𝐌𝐓𝐎𝐓𝐎
-🔥 Bonus New Member 20% 𝐏𝐌𝐓𝐎𝐓𝐎
-🔥 Bonus Next Harian 5% 𝐏𝐌𝐓𝐎𝐓𝐎
-🔥 Bonus CashBack Mingguan 5% Slot
-🔥 Bonus Rollingan Mingguan 0.5% Slot
-🔥 Bonus Rollingan Mingguan 2% Casino
-🔥 Bonus Refferal 0,05% Casino
-🔥 Bonus Refferal 0,1% Slot
-🔥 Bonus Refferal 0,1% Togel 
+promo:🧧 Promo dan Bonus 𝐏𝐌𝐓𝐎𝐓𝐎 🧧🔥 Bonus Saldo Gratis Bersama 𝐏𝐌𝐓𝐎𝐓𝐎🔥 Bonus New Member 20% 𝐏𝐌𝐓𝐎𝐓𝐎🔥 Bonus Next Harian 5% 𝐏𝐌𝐓𝐎𝐓𝐎🔥 Bonus Rollingan Mingguan 0.5% Slot Bonus Rollingan Mingguan 2% Casino🔥 Bonus Refferal 0,05% Casino🔥 Bonus Refferal 0,1% Slot🔥 Bonus Refferal 0,1% Togel 
 
-rtp:
-https://go.unipin.vip/go/rtp-aseli
+rtp:https://go.unipin.vip/go/rtp-aseli
 
-batas line:
-Kami informasikan kepada member setia PMTOTO berikut syarat betting di PMTOTO
+batas line:Kami informasikan kepada member setia PMTOTO berikut syarat betting di PMTOTOBBFS (BB Campuran)- MINIMAL 4 DIGIT- MAXIMAL 7 DIGITANGKA TARUNG (POLA TARUNG- MINIMAL 4 DIGIT- MAXIMAL 7 DIGIT4D: BEBAS LINE3D: BEBAS LINE2D: BEBAS LINEMohon Di Pahami Dengan Seksama Demi Kelancaran Dan Kenyamanan Bermain.Jika Terdapat Pelanggaran ,. Maka Akan Kami Tindak Tegas (SELURUH BETTINGAN TIDAK DIANGGAP SAH & SALDO BETTINGAN DIHANGUSKANDemikian Kami Sampaiakan Kepada Seluruh Member Setia PMTOTO,.Salam Hoki PMTOTO 
 
-BBFS (BB Campuran)
-- MINIMAL 4 DIGIT
-- MAXIMAL 7 DIGIT
+kontak:Berikut Kontak 𝐎𝐅𝐅𝐈𝐂𝐈𝐀𝐋 𝐏𝐌𝐓𝐎𝐓𝐎 𝟐𝟒 𝐉𝐀𝐌 𝐎𝐍𝐋𝐈𝐍𝐄 :𝐖𝐇𝐀𝐓𝐒𝐀𝐏𝐏 𝐎𝐅𝐅𝐈𝐂𝐈𝐀𝐋 𝐏𝐌𝐓𝐎𝐓𝐎 1 https://wa.me/+6281260428264𝐓𝐄𝐋𝐄𝐆𝐑𝐀𝐌 𝐎𝐅𝐅𝐈𝐂𝐈𝐀𝐋 𝐏𝐌𝐓𝐎𝐓𝐎 : https://t.me/pmtotoindonesiaJangan Lupa Kunjungi ROOM RESULT Kami Yah BosskROOM RESULT 𝐏𝐌𝐓𝐎𝐓𝐎  : https://go.unipin.vip/go/room-result Silahkan Bossku Bisa Klik / Copy Link Tautan 𝐏𝐌𝐓𝐎𝐓𝐎 Dan Buka Di 𝐆𝐎𝐎𝐆𝐋𝐄 Maka Akan Langsung Terhubung.. 
 
-ANGKA TARUNG (POLA TARUNG)
-- MINIMAL 4 DIGIT
-- MAXIMAL 7 DIGIT
+live draw:https://livedraw-pm.pages.dev/
 
-
-4D: BEBAS LINE
-3D: BEBAS LINE
-2D: BEBAS LINE
-
-
-
-Mohon Di Pahami Dengan Seksama Demi Kelancaran Dan Kenyamanan Bermain.
-Jika Terdapat Pelanggaran ,. Maka Akan Kami Tindak Tegas (SELURUH BETTINGAN TIDAK DIANGGAP SAH & SALDO BETTINGAN DIHANGUSKAN)
-Demikian Kami Sampaiakan Kepada Seluruh Member Setia PMTOTO,.
-Salam Hoki PMTOTO 
-
-kontak:
-Berikut Kontak 𝐎𝐅𝐅𝐈𝐂𝐈𝐀𝐋 𝐏𝐌𝐓𝐎𝐓𝐎 𝟐𝟒 𝐉𝐀𝐌 𝐎𝐍𝐋𝐈𝐍𝐄 :
-
-𝐖𝐇𝐀𝐓𝐒𝐀𝐏𝐏 𝐎𝐅𝐅𝐈𝐂𝐈𝐀𝐋 𝐏𝐌𝐓𝐎𝐓𝐎 1 https://wa.me/+6281260428264
-
-𝐓𝐄𝐋𝐄𝐆𝐑𝐀𝐌 𝐎𝐅𝐅𝐈𝐂𝐈𝐀𝐋 𝐏𝐌𝐓𝐎𝐓𝐎 : https://t.me/pmtotoindonesia
-
-Jangan Lupa Kunjungi ROOM RESULT Kami Yah Bossku
-ROOM RESULT 𝐏𝐌𝐓𝐎𝐓𝐎  : https://go.unipin.vip/go/room-result
-
-Silahkan Bossku Bisa Klik / Copy Link Tautan 𝐏𝐌𝐓𝐎𝐓𝐎 
-Dan Buka Di 𝐆𝐎𝐎𝐆𝐋𝐄 Maka Akan Langsung Terhubung.. 
-
-live draw:
-https://livedraw-pm.pages.dev/
 
 
 
